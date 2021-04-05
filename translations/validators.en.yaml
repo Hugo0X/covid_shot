@@ -1,0 +1,5 @@
+# translations/validators.en.yaml
+UserEntity.not_blank: Ce champs ne peut pas être vide.
+UserEntity.minLenght: La longueur minimal est de {{ limit }} caractères
+UserEntity.maxLenght: La longueur maximal est de {{ limit }} caractères
+UserEntity.range: Vous devez être majeur pour utiliser ce service, et ne pas être doyen(ne)

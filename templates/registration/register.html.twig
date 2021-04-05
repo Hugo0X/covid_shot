@@ -1,0 +1,107 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Register' %}
+
+{% block body %}
+
+{% for flashError in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
+
+<h1 class='h2 my-5 text-center'>Inscription</h1>
+    <div class='col-md-10 mx-auto'>   
+        {{ form_start(registrationForm) }}
+        <div class="mt-2 border-top border-dark form-group">
+            <p class="mt-1 h4">Identité</p>
+            <div class="form-row">
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.lastName, {'label': 'Nom', 'attr': {'placeholder': 'Dupond'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.firstName, {'label': 'Prénom', 'attr': {'placeholder': 'Jean'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.age) }}
+                </div>
+                <div class="col-md-6">                                	
+                    {{ form_label(registrationForm.genre, 'Genre') }}       
+                        <div class="d-flex flex-row">        
+                            <div class="input-group radioCursor" onclick="checkRadioMale();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.genre[0]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Homme<p>
+                            </div>
+                            <div class="input-group radioCursor" onclick="checkRadioFemale();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.genre[1]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Femme<p>
+                            </div>                     
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3 border-top border-dark">
+            <p class="mt-1 h4">Localité</p>
+            <div class="form-row">
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.address, {'label': 'Adresse', 'attr': {'placeholder': '7 rue du cerf'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.city, {'label': 'Ville', 'attr': {'placeholder': 'Strasbourg'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.postCode, {'label': 'Code Postal', 'attr': {'placeholder': '69750'}}) }}
+                </div> 
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.phone, {'label': 'Numéro de télèphone', 'attr': {'placeholder': '0612345678'}}) }}  
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-3 border-top border-dark">
+            <p class="mt-1 h4">Connexion</p>
+            <div class="form-row">
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.email, {'label': 'Email', 'attr': {'placeholder': 'unepersonne@exemple.fr'}}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(registrationForm.password) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+
+
+
+        <button type="submit" class="my-5 btn-lg btn btn-outline-primary btn-block themeBackgroundColor">Valider</button>
+                
+                <p class='mb-3 text-center text-muted'>Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+
+            {{ form_end(registrationForm) }}
+
+            
+        </div>
+    </div>
+
+<script>
+        function checkRadioMale() {
+        document.getElementById("registration_form_genre_0").checked = true;
+        }
+
+        function checkRadioFemale() {
+        document.getElementById("registration_form_genre_1").checked = true;
+        }
+</script>
+    
+{% endblock %}

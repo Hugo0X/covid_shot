@@ -1,0 +1,241 @@
+@import "~bootstrap/scss/bootstrap";
+
+@font-face {
+    font-family: 'marianne';
+    src: local('marianne'),
+        url('./fonts/marianne/marianne-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: local('Roboto-Bold'),
+        url('./fonts/roboto/Roboto-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
+$primary: #000091;
+
+$theme-colors: (
+  primary: $primary
+);
+
+@import "bootstrap";
+
+body {
+    background-color: white;
+    font-family: 'marianne', 'Roboto-Bold', Arial, sans-serif;
+}
+
+.themeTitle {
+    color: $primary;
+    font-weight: bold;
+    font-size: 200%;
+}
+
+
+.bannerImg {
+    margin-right: 10%;
+}
+
+.box
+{
+    color: white; 
+    font-size: 200%; 
+    padding:2% 5%;
+
+   .boxBigText {
+        font-size: calc(80% + 1vw);
+        margin-right:50%;
+        font-weight: 900;
+   }
+    
+    .boxText {
+        font-size: calc(60% + 1vw);
+        font-weight: 700;
+    }
+    
+    .boxChevron {
+        font-size: calc(70% + 1.5vw);
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+.box1 { 
+    background: linear-gradient(to left, rgba(55, 55, 139, 0.6), rgb(14, 14, 121)), center url('../images/covid.png');
+    transition: all .5s;
+
+    &:hover {
+        background: rgb(14, 14, 121); 
+        transition: none;
+    }
+}
+
+.box2 {
+    background: linear-gradient(to left, rgba(139, 139, 139, 0.6), rgb(106, 106, 106)), right repeat-x url('../images/newspaper.png');
+    transition: all 2s;
+
+    &:hover {
+        background: rgb(106, 106, 106);
+        transition: none;
+    }
+}
+
+.box3 {
+    background: linear-gradient(to left, rgba(1, 37, 69, 0.6), rgb(1, 37, 69)), center no-repeat url('../images/vaccinSpeed.png');
+    // https://www.gouvernement.fr/sites/default/files/homepage/bandeau_ovq_site_adapte.jpg
+    transition: all .9s ;
+
+    &:hover {
+        background:rgb(1, 37, 69);
+        transition: none;
+    }
+}
+
+.form-control::placeholder { /* available on Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #959595;
+    opacity: 1; /* Firefox */
+}
+
+.labelDisplayNone
+{
+    label
+    {
+        display: none;
+    }
+}
+
+.radioCursor
+{
+    cursor: default;
+}
+
+
+.alert
+{
+    padding: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+
+    &.alert-success {
+        background-color: green;
+    }
+
+    &.alert-error {
+        background-color: red;
+    }
+
+    &.alert-info {
+        background-color: blue;
+    } 
+}
+
+@media (max-width: 1024px)
+{
+    .themeTitle {
+        // font-size: 150%;
+    }
+
+    .bannerImg {
+        height: 100px;
+        width: 100px;
+    }
+    
+    @media (max-width: 720px)
+    {
+        .themeTitle {
+            // font-size: 125%;
+        }
+
+        .bannerImg {
+            height: 70px;
+            width: 70px;
+        }
+
+        @media (max-width: 458px)
+        {
+            .themeTitle {
+                // font-size: 110%;
+            }
+    
+            .bannerImg {
+                height: 65px;
+                width: 65px;
+            }
+        }
+    }
+}
+
+// --- chevron's animation ---
+
+:before,
+:after {
+    box-sizing: border-box;
+}
+
+
+.box:hover .boxChevron{
+    animation: text-shadow 1s ease-in-out infinite;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@keyframes text-shadow {
+    0% {  
+        transform: translateX(0);
+        // text-shadow: 
+        //     0 0 0 #0c2ffb, 
+        //     0 0 0 #2cfcfd, 
+        //     0 0 0 #fb203b, 
+        //     0 0 0 #fefc4b;
+    }
+
+    // 20% {  
+    //     transform: translateX(1em);
+    //     // text-shadow: 
+    //     //     0 0.125em 0 #0c2ffb, 
+    //     //     0 0.25em 0 #2cfcfd, 
+    //     //     0 -0.125em 0 #fb203b, 
+    //     //     0 -0.25em 0 #fefc4b;
+    // }
+
+    50% {  //40%
+        transform: translateX( 1em);
+        // text-shadow: 
+        //     0 -0.0625em 0 #0c2ffb, 
+        //     0 -0.125em 0 #2cfcfd, 
+        //     0 0.0625em 0 #fb203b, 
+        //     0 0.125em 0 #fefc4b;
+    }
+    
+//    60% {
+//         transform: translateX( -.3em);
+//         // text-shadow: 
+//         //     0 0.03125em 0 #0c2ffb, 
+//         //     0 0.0625em 0 #2cfcfd, 
+//         //     0 -0.03125em 0 #fb203b, 
+//         //     0 -0.0625em 0 #fefc4b;
+//     }
+
+    // 80% {  
+    //     transform: translateX(0);
+    //     // text-shadow: 
+    //     //     0 0 0 #0c2ffb, 
+    //     //     0 0 0 #2cfcfd, 
+    //     //     0 0 0 #fb203b, 
+    //     //     0 0 0 #fefc4b;
+    // }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+}
+

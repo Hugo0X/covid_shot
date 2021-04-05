@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Hello InfoController!{% endblock %}
+
+{% block body %}
+       
+        <a href="{{ path('app_register') }}" class="text-decoration-none">
+        <div class="mt-5 mb-5 box box1">
+            <span class="border border-white rounded-pill h6 py-2 px-3">Covid-19</span>
+            <div class="d-flex justify-content-between"></div>
+                <p class="mt-2 boxBigText">Je suis volontaire pour la vaccination</p>
+                <p class="material-icons d-flex align-items-center boxChevron animation">keyboard_arrow_right</p>
+            </div>
+        </div>
+        </a>
+
+        <a href="#" class="text-decoration-none">
+        <div class="mt-5 mb-5 box box2">
+            <span class="border border-white rounded-pill h6 py-2 px-3">Info</span>
+            <div class="d-flex justify-content-between">
+                <p class="mt-2 boxText">Actualités lièe au covid</p>
+                <p class="material-icons d-flex align-items-center boxChevron animation">keyboard_arrow_right</p>
+            </div>
+        </div>
+        </a>
+
+        <a href="https://www.gouvernement.fr/info-coronavirus/vaccins" class="text-decoration-none">
+        <div class="mt-5 mb-5 box box3">
+            <span class="border border-white rounded-pill h6 py-2 px-3">Covid-19</span>
+            <div class="d-flex justify-content-between">
+                <p class="mt-2 boxText">Le point sur les vaccins</p>
+                <p class="material-icons d-flex align-items-center boxChevron animation">keyboard_arrow_right</p>
+            </div>
+        </div>
+        </a>
+
+{% endblock %}
