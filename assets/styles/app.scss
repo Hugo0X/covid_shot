@@ -31,7 +31,7 @@ body {
 .themeTitle {
     color: $primary;
     font-weight: bold;
-    font-size: 200%;
+    font-size: min(calc(70% + 1.75vw), 300%);
 }
 
 
