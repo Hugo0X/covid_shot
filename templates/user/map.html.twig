@@ -160,7 +160,7 @@ crossorigin=""></script>
 
     console.log(lattitude);
        
-    var mymap = L.map('mapid').setView([lattitude, longitude], 10); //([lattitude, longitude] zoom);
+    var mymap = L.map('mapid').setView([lattitude, longitude], 11); //([lattitude, longitude] zoom);
     var markers = L.markerClusterGroup({ disableClusteringAtZoom: 9 });
 
     var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
