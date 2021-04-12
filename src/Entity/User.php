@@ -160,7 +160,17 @@ class User implements UserInterface
      *      allowEmptyString = false
      * )
      */
-    private $genre;
+    private $genre;  // nom à modifier
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isMedicalStaff;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasComorbidity;
 
     public function getId(): ?int
     {
@@ -335,6 +345,30 @@ class User implements UserInterface
     public function setGenre(string $genre): self
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getIsMedicalStaff(): ?bool
+    {
+        return $this->isMedicalStaff;
+    }
+
+    public function setIsMedicalStaff(bool $isMedicalStaff): self
+    {
+        $this->isMedicalStaff = $isMedicalStaff;
+
+        return $this;
+    }
+
+    public function getHasComorbidity(): ?bool
+    {
+        return $this->hasComorbidity;
+    }
+
+    public function setHasComorbidity(bool $hasComorbidity): self
+    {
+        $this->hasComorbidity = $hasComorbidity;
 
         return $this;
     }

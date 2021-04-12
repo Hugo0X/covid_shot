@@ -6,12 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\ApiGeoController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/user")
 */
 class UserController extends AbstractController
 {
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="app_user")
      */
@@ -27,6 +36,12 @@ class UserController extends AbstractController
      */
     public function map(): Response
     {
+        $this->session->remove('nextStep');
+        
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_info_home');
+        }
+
         $api = new ApiGeoController;
         $gps = $api->getGps($this->getUser()->getPostCode());
 

@@ -16,23 +16,29 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use App\Controller\ApiGeoController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class RegistrationController extends AbstractController
 {
     private $emailVerifier;
+    private $session;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(EmailVerifier $emailVerifier, SessionInterface $session)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->session = $session;
     }
 
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/register", name="app_register", methods={"GET", "POST"})
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {   
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_user_map');
+            return $this->redirectToRoute('app_info_home');
+        }
+        elseif ($request->get('nextStep') == 'map') {
+            $this->session->set('nextStep', 'app_user_map');
         }
 
         $user = new User;

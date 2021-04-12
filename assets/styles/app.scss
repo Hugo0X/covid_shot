@@ -45,12 +45,23 @@ body {
     font-size: 200%; 
     padding:2% 5%;
 
-   .boxBigText {
+   .boxBigText
+   {
         font-size: calc(80% + 1vw);
         margin-right:50%;
         font-weight: 900;
+
+        .boxBigUserText { 
+            margin-right:25%; 
+        }
    }
-    
+
+   .boxBigUserText {
+    font-size: calc(80% + 1vw);
+    margin-right:25%;
+    font-weight: 900;
+   }
+
     .boxText {
         font-size: calc(60% + 1vw);
         font-weight: 700;
@@ -135,12 +146,41 @@ body {
     } 
 }
 
+// --- counter ---
+
+.counter {
+    background-color:#f5f5f5;
+}
+
+.count-title {
+    font-size: 250%;
+}
+
+// --- bulleted list --- 
+
+.large{
+    counter-reset: list-counter;
+    list-style: none;
+}
+
+.large li{
+    margin: 1.5em 0;
+    line-height: 1em
+}
+
+.large li:before{
+    content: counter(list-counter);
+    counter-increment: list-counter;
+    color:#666666;
+    font: bold;
+    font-size: 2em;
+    margin-right: .5em;
+}
+
+// --- media querries ---
+
 @media (max-width: 1024px)
 {
-    .themeTitle {
-        // font-size: 150%;
-    }
-
     .bannerImg {
         height: 100px;
         width: 100px;
@@ -148,10 +188,6 @@ body {
     
     @media (max-width: 720px)
     {
-        .themeTitle {
-            // font-size: 125%;
-        }
-
         .bannerImg {
             height: 70px;
             width: 70px;
@@ -159,10 +195,6 @@ body {
 
         @media (max-width: 458px)
         {
-            .themeTitle {
-                // font-size: 110%;
-            }
-    
             .bannerImg {
                 height: 65px;
                 width: 65px;
@@ -171,65 +203,11 @@ body {
     }
 }
 
-// --- chevron's animation ---
+// animation \\
 
 :before,
 :after {
     box-sizing: border-box;
-}
-
-
-.box:hover .boxChevron{
-    animation: text-shadow 1s ease-in-out infinite;
-    font-weight: 700;
-    line-height: 1;
-}
-
-@keyframes text-shadow {
-    0% {  
-        transform: translateX(0);
-        // text-shadow: 
-        //     0 0 0 #0c2ffb, 
-        //     0 0 0 #2cfcfd, 
-        //     0 0 0 #fb203b, 
-        //     0 0 0 #fefc4b;
-    }
-
-    // 20% {  
-    //     transform: translateX(1em);
-    //     // text-shadow: 
-    //     //     0 0.125em 0 #0c2ffb, 
-    //     //     0 0.25em 0 #2cfcfd, 
-    //     //     0 -0.125em 0 #fb203b, 
-    //     //     0 -0.25em 0 #fefc4b;
-    // }
-
-    50% {  //40%
-        transform: translateX( 1em);
-        // text-shadow: 
-        //     0 -0.0625em 0 #0c2ffb, 
-        //     0 -0.125em 0 #2cfcfd, 
-        //     0 0.0625em 0 #fb203b, 
-        //     0 0.125em 0 #fefc4b;
-    }
-    
-//    60% {
-//         transform: translateX( -.3em);
-//         // text-shadow: 
-//         //     0 0.03125em 0 #0c2ffb, 
-//         //     0 0.0625em 0 #2cfcfd, 
-//         //     0 -0.03125em 0 #fb203b, 
-//         //     0 -0.0625em 0 #fefc4b;
-//     }
-
-    // 80% {  
-    //     transform: translateX(0);
-    //     // text-shadow: 
-    //     //     0 0 0 #0c2ffb, 
-    //     //     0 0 0 #2cfcfd, 
-    //     //     0 0 0 #fb203b, 
-    //     //     0 0 0 #fefc4b;
-    // }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -239,3 +217,54 @@ body {
     }
 }
 
+// --- chevron's animation ---
+
+.box:hover .boxChevron{
+    animation: chevronX 1s ease-in-out infinite;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@keyframes chevronX {
+    0% {  
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX( 1em);
+    }
+}
+
+// --- radio's animation ---
+
+.animation:hover {
+    animation: checkboxY 1.5s ease-in-out infinite;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.animation {
+    animation-play-state: paused;
+}
+
+@keyframes checkboxY {
+    0% {  
+        transform: translateY(0);
+    }
+
+    20% {  
+        transform: translateY(-1em);
+    }
+
+    40% {  
+        transform: translateY(0.5em);
+    }
+    
+   60% {
+        transform: translateY(-0.25em);
+    }
+
+    80% {  
+        transform: translateY(0);
+    }
+}

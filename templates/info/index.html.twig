@@ -1,19 +1,24 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}Hello InfoController!{% endblock %}
+{% block title 'Bienvenue sur TPLV ! - Accueil' %}
 
 {% block body %}
        
-        <a href="{{ path('app_register') }}" class="text-decoration-none">
+        {% if app.user %}
+        <a href="{{ path('app_user_map') }}" class="text-decoration-none">
+        {% else %}  
+        <a href="{{ path('app_info_registrationInformation') }}" class="text-decoration-none">
+        {% endif %}
         <div class="mt-5 mb-5 box box1">
             <span class="border border-white rounded-pill h6 py-2 px-3">Covid-19</span>
-            <div class="d-flex justify-content-between"></div>
-                <p class="mt-2 boxBigText">Je suis volontaire pour la vaccination</p>
-                <p class="material-icons d-flex align-items-center boxChevron animation">keyboard_arrow_right</p>
-            </div>
+            {% if app.user %}
+            <p class="mt-2 boxBigUserText">Consulter les centres de vaccination proche de chez moi</p>
+            {% else %}
+            <p class="mt-2 boxBigText">Je suis volontaire pour la vaccination</p>
+            {% endif %}
+            <p class="material-icons d-flex align-items-center boxChevron animation">keyboard_arrow_right</p>
         </div>
         </a>
-
         <a href="#" class="text-decoration-none">
         <div class="mt-5 mb-5 box box2">
             <span class="border border-white rounded-pill h6 py-2 px-3">Info</span>
@@ -24,7 +29,7 @@
         </div>
         </a>
 
-        <a href="https://www.gouvernement.fr/info-coronavirus/vaccins" class="text-decoration-none">
+        <a href="{{ path('app_info_vaccineInformation') }}" class="text-decoration-none">
         <div class="mt-5 mb-5 box box3">
             <span class="border border-white rounded-pill h6 py-2 px-3">Covid-19</span>
             <div class="d-flex justify-content-between">

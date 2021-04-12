@@ -55,12 +55,29 @@ class RegistrationFormType extends AbstractType
             ->add('address')
             ->add('city')
             ->add('age')
-            ->add('genre',ChoiceType::class,[ // à modifier
+            ->add('genre',ChoiceType::class,[
                 'choices' => [
-                    'Masculin' =>'Masculin',
-                    'Féminin' =>'Féminin',],
-                'expanded'=>true,
-                'multiple'=>false,
+                    'Masculin' => 'Masculin',
+                    'Féminin' => 'Féminin',],
+                'expanded'=> true,
+                'multiple'=> false,
+                'choice_label' => false,
+            ])
+            ->add('isMedicalStaff',ChoiceType::class,[
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,],
+                'expanded'=> true,
+                'multiple'=> false,
+                'choice_label' => false,
+            ])
+            ->add('hasComorbidity',ChoiceType::class,[
+                'help'=>'Consulter la liste des comorbidités',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,],
+                'expanded'=> true,
+                'multiple'=> false,
                 'choice_label' => false,
             ])
         ;

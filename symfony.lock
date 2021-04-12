@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "4.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -533,9 +536,6 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.3.0"
-    },
-    "twig/extra-bundle": {
-        "version": "v3.3.0"
     },
     "twig/twig": {
         "version": "v3.3.0"

@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Information inscription | TPLV' %}
+
+{% block body %}
+       
+    <h1 class="mt-5 mb-3 h2 text-center text-primary">{{ 'Inscription pour la vaccination' }}</h1><!-- |upper -->
+    <p class="text-center">L'inscription pour la vaccination est déjà ouverte à tous, néanmoins si vous n'êtes pas considéré comme public prioritaire vous serez surement amené à patienter quelques mois, sur la liste d'attentes.</p>
+    
+    <h2 class="mt-5 h4 font-weight-bold">Une utilisation simple</h2>
+    <ul class="large h5">
+        <li>Vous vous inscrivez</li>
+        <li>Une fois que vous êtes <a class="text-dark" href="{{ path('app_info_vaccineInformation')}}#iframeEligibily" target="_blank" rel="noopener noreferrer">admisible à la vaccination</a>, le centre de vaccination vous contacte directement</li>
+        <li>Vous confirmez le rendez-vous</li>
+        <li>Si vôtre vaccin nécessite deux doses le centre vous recontactera pour l'effectuer</li>
+        <li class="font-weight-bold">Ça y est vous êtes vacciné</li>
+        <p><span style="color:#666666; font: bold; font-size: 2em; margin-right: .5em;">#</span> Mais on peut vous appeller si des doses vont être gaspillées, même si vous n'êtes pas prioritaire</p>
+    </ul>
+
+    <h2 class="mt-5 h4 font-weight-bold">Nous respectons votre vie privée</h2>
+    <p>Les données que nous collectons ne sont que destinées qu'à des fin d'études et d'élaboration de statistiques et surtout à vous permettre de vous faire vacciner. Nous ne communiquerons jamais vos données personnelles à un tiers.</p>
+
+    <div class="my-5 btn-group btn-block">
+        <a href="{{ path('app_register', {'nextStep': 'map'} ) }}" class="text-decoration-none btn btn-outline-primary btn-lg">Inscription</a>
+        <a href="{{ path('app_login', {'nextStep': 'map'} ) }}" class="text-decoration-none btn btn-outline-primary btn-lg">Connexion</a>
+    </div>
+
+{% endblock %}

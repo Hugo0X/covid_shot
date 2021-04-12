@@ -14,21 +14,20 @@ crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js" integrity="sha512-MQlyPV+ol2lp4KodaU/Xmrn+txc1TP15pOBF/2Sfre7MRsA/pB4Vy58bEqe9u7a7DczMLtU5wT8n7OblJepKbg==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" integrity="sha512-BBToHPBStgMiw0lD4AtkRIZmdndhB6aQbXpX7omcrXeG2PauGBl2lzq2xUZTxaLxYz5IDHlmneCZ1IJ+P3kYtQ==" crossorigin="anonymous" />
 
-<h3 style="margin-top : 80px;" id="centres-vaccination">Centres de vaccination</h3>
-Carte des centres de vaccination. Source des données : Ministère de la Santé. Mise à jour plusieurs fois par jour.
-<br><br>
-<b>Nos conseils pour trouver un RDV</b><br>
-Les données affichées sur cette carte proviennent du Ministère de la Santé. Pour trouver un rendez-vous rapidement, nous vous conseillons de cliquer sur les centres les plus poches de chez vous, puis de cliquer sur le lien Doctolib, Keldoc ou Maiia présente sur la fiche du centre, lorsqu'il est renseigné. Vous pouvez aussi appeler le centre si son numéro est renseigné. N'hésitez pas à revenir plusieurs fois par jour, les données sont très régulièrement mises à jour.
-<br><br>
-<div id="mapid" style="height: 80vh; width: 90vw; max-width: 1000px; max-height: 600px;"></div>
 
-<br>
-<br>
 
+
+<h3 class="mt-5">Déroulement de la vaccination</h3>
+<p>Vous vous êtes inscrit pour être directement mis en relation avec un centre de vaccination, cependant vous pouvez tout de même vous inscrire sur les sites dédiés de chaque centre.</p>
+<p>En étant inscrit sur ce site vous pouvez être amené à être appelé par un centre, même si vous n'êtes pas encore le public concerné et bénéficier d'une dose pour éviter son gaspillage</p>
+
+<h3 class="mt-3" id="centres-vaccination">Centres de vaccination</h3>
+<p class="text-muted">Les données sont mises à jour très régulièrement</p>
+
+
+<div id="mapid" class="mb-5" style="height: 80vh; width: 90vw; max-width: 1000px; max-height: 600px;"></div>
 
 <script>
-
-
     // ref: http://stackoverflow.com/a/1293163/2343
     // This will parse a delimited string into an array of
     // arrays. The default delimiter is the comma, but this
@@ -127,8 +126,6 @@ Les données affichées sur cette carte proviennent du Ministère de la Santé. 
     var date_ouverture = [];
     var maj = [];
 
-    var codePostal = [];
-
     const div = document.querySelector('div');
     const url="https://www.data.gouv.fr/fr/datasets/r/5cb21a85-b0b0-4a65-a249-806a040ec372"
 
@@ -187,7 +184,7 @@ Les données affichées sur cette carte proviennent du Ministère de la Santé. 
 
             var modalites_str = modalites[idx]
             
-            var string_popup = "<span style='font-size: 150%;'>" + noms[idx] + "</span><br><b>Adresse :</b> " + adresses[idx] + "<br><b>Réservation :</b> " + reservation_str + "</a><br><b>Tél :</b> <a href:'tel:" + rdv_tel[idx] + "'>" + rdv_tel[idx] + "</a><br><b>Date d'ouverture :</b> "+ date_ouverture[idx] + "<br><b>Modalités :</b> " + modalites_str + "<br><b>Mise à jour :</b> " + maj[idx] + codePostal[idx]
+            var string_popup = "<span style='font-size: 150%;'>" + noms[idx] + "</span><br><b>Adresse :</b> " + adresses[idx] + "<br><b>Réservation :</b> " + reservation_str + "</a><br><b>Tél :</b> <a href:'tel:" + rdv_tel[idx] + "'>" + rdv_tel[idx] + "</a><br><b>Date d'ouverture :</b> "+ date_ouverture[idx] + "<br><b>Modalités :</b> " + modalites_str + "<br><b>Mise à jour :</b> " + maj[idx]
             var marker = L.marker([longitudes[idx], lat]).bindPopup(string_popup) //.addTo(this.mymap);
             marker.on('click', function(e) {this.openPopup();});
             markers.addLayer(marker);

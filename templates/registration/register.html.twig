@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title 'Register' %}
+{% block title 'Inscription | TPLV' %}
 
 {% block body %}
 
@@ -8,11 +8,11 @@
     <div class="alert alert-danger" role="alert">{{ flashError }}</div>
 {% endfor %}
 
-<h1 class='h2 my-5 text-center'>Inscription</h1>
+<h1 class='h2 my-5 text-center text-primary'>Inscription</h1>
     <div class='col-md-10 mx-auto'>   
         {{ form_start(registrationForm) }}
         <div class="mt-2 border-top border-dark form-group">
-            <p class="mt-1 h4">Identité</p>
+            <p class="mt-1 h4 font-weight-bold">Identité</p>
             <div class="form-row">
                 <div class="col-md-6">
                     {{ form_row(registrationForm.lastName, {'label': 'Nom', 'attr': {'placeholder': 'Dupond'}}) }}
@@ -26,7 +26,7 @@
                 <div class="col-md-6">                                	
                     {{ form_label(registrationForm.genre, 'Genre') }}       
                         <div class="d-flex flex-row">        
-                            <div class="input-group radioCursor" onclick="checkRadioMale();">
+                            <div class="input-group radioCursor animation" onclick="checkRadio0('registration_form_genre_0');">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text labelDisplayNone pl-3 pb-3">
                                         {{ form_widget(registrationForm.genre[0]) }}
@@ -34,7 +34,7 @@
                                 </div>
                                     <p class="form-control">Homme<p>
                             </div>
-                            <div class="input-group radioCursor" onclick="checkRadioFemale();">
+                            <div class="input-group radioCursor animation" onclick="checkRadio1('registration_form_genre_1');">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text labelDisplayNone pl-3 pb-3">
                                         {{ form_widget(registrationForm.genre[1]) }}
@@ -48,7 +48,7 @@
         </div>
 
         <div class="mt-3 border-top border-dark">
-            <p class="mt-1 h4">Localité</p>
+            <p class="mt-1 h4 font-weight-bold">Localité</p>
             <div class="form-row">
                 <div class="col-md-6">
                     {{ form_row(registrationForm.address, {'label': 'Adresse', 'attr': {'placeholder': '7 rue du cerf'}}) }}
@@ -66,7 +66,7 @@
         </div>
         
         <div class="mt-3 border-top border-dark">
-            <p class="mt-1 h4">Connexion</p>
+            <p class="mt-1 h4 font-weight-bold">Connexion</p>
             <div class="form-row">
                 <div class="col-md-6">
                     {{ form_row(registrationForm.email, {'label': 'Email', 'attr': {'placeholder': 'unepersonne@exemple.fr'}}) }}
@@ -77,16 +77,65 @@
             </div>
         </div>
 
-        <div class="mt-2">
+        <div class="mt-3 border-top border-dark">
+            <p class="mt-1 h4 font-weight-bold">Spécificité</p>
+            <div class="form-row">
+                <div class="col-md-6">                                	
+                    {{ form_label(registrationForm.isMedicalStaff, 'Êtes vous un personel de santé ?') }}       
+                        <div class="d-flex flex-row">        
+                            <div class="input-group radioCursor animation" onclick="checkRadio0('registration_form_isMedicalStaff_0');">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.isMedicalStaff[0]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Oui<p>
+                            </div>
+                            <div class="input-group radioCursor animation" onclick="checkRadio1('registration_form_isMedicalStaff_1');">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.isMedicalStaff[1]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Non<p>
+                            </div>                     
+                        </div>
+                </div>
+                <div class="col-md-6">                                	
+                    {{ form_label(registrationForm.hasComorbidity, 'Avez-vous des comorbidités ?') }}       
+                        <div class="d-flex flex-row">        
+                            <div class="input-group radioCursor animation" onclick="checkRadio0('registration_form_hasComorbidity_0');">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.hasComorbidity[0]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Oui<p>
+                            </div>
+                            <div class="input-group radioCursor animation" onclick="checkRadio1('registration_form_hasComorbidity_1');">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text labelDisplayNone pl-3 pb-3">
+                                        {{ form_widget(registrationForm.hasComorbidity[1]) }}
+                                    </div>
+                                </div>
+                                    <p class="form-control">Non<p>
+                            </div>                     
+                        </div>
+                    <a href="https://solidarites-sante.gouv.fr/IMG/pdf/liste_maladies_rares_cosv_fmr-2.pdf" target="_blank" rel="noopener noreferrer" >
+                        {{ form_help(registrationForm.hasComorbidity) }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
             {{ form_row(registrationForm.agreeTerms) }}
         </div>
 
 
-
-
-        <button type="submit" class="my-5 btn-lg btn btn-outline-primary btn-block themeBackgroundColor">Valider</button>
+        <button type="submit" class="my-5 btn-lg btn btn-outline-primary btn-block">Valider</button>
                 
-                <p class='mb-3 text-center text-muted'>Vous avez déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
+                <p class='mb-3 text-center text-muted'>Vous avez déjà un compte ? <a  class="text-primary" href="{{ path('app_login') }}">Se connecter</a></p>
 
             {{ form_end(registrationForm) }}
 
@@ -95,13 +144,14 @@
     </div>
 
 <script>
-        function checkRadioMale() {
-        document.getElementById("registration_form_genre_0").checked = true;
+        function checkRadio0(id) {
+        document.getElementById(id).checked = true;
         }
 
-        function checkRadioFemale() {
-        document.getElementById("registration_form_genre_1").checked = true;
+        function checkRadio1(id) {
+        document.getElementById(id).checked = true;
         }
 </script>
+
     
 {% endblock %}

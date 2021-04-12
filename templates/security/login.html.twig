@@ -8,7 +8,7 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="my-5 h2 text-center">Connexion</h1>
+    <h1 class="my-5 h2 text-center text-primary">Connexion</h1>
     <label class="h5" for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="jean.castex@exemple.fr" required autofocus>
     <label class="mt-4 h5" for="inputPassword">Mot de passe</label>
@@ -29,4 +29,5 @@
 
     <div class="text-center"><button class="mt-5 col-md-6 btn btn-lg btn-outline-primary themeBackgroundColor" type="submit">Valider</button></div>
 </form>
+
 {% endblock %}
