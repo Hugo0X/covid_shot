@@ -110,6 +110,13 @@ body {
     opacity: 1; /* Firefox */
 }
 
+.btnFooter {
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+    right: 25%;
+}
+
 .labelDisplayNone
 {
     label
@@ -142,7 +149,7 @@ body {
     }
 
     &.alert-info {
-        background-color: blue;
+        background-color: $primary;
     } 
 }
 
@@ -193,15 +200,36 @@ body {
             width: 70px;
         }
 
+
         @media (max-width: 458px)
         {
             .bannerImg {
                 height: 65px;
                 width: 65px;
             }
+
+            .line::before {
+                content: "\A";
+                white-space: pre;
+            }
+
+            .btnFooter {
+                right: 2.5%;
+            }
         }
     }
 }
+
+// .backgroundAnimation:hover {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 50%;
+//     height: 100%;
+//     background-color: $primary;
+// }
+
+
 
 // animation \\
 
@@ -238,7 +266,7 @@ body {
 // --- radio's animation ---
 
 .animation:hover {
-    animation: checkboxY 1.5s ease-in-out infinite;
+    animation: checkboxY 1.5s ease-in-out;
     font-weight: 700;
     line-height: 1;
 }

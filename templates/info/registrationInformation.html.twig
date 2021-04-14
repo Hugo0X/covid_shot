@@ -5,12 +5,12 @@
 {% block body %}
        
     <h1 class="mt-5 mb-3 h2 text-center text-primary">{{ 'Inscription pour la vaccination' }}</h1><!-- |upper -->
-    <p class="text-center">L'inscription pour la vaccination est déjà ouverte à tous, néanmoins si vous n'êtes pas considéré comme public prioritaire vous serez surement amené à patienter quelques mois, sur la liste d'attentes.</p>
+    <p class="text-center">L'inscription pour la vaccination est déjà ouverte à tous, néanmoins si vous n'êtes pas considéré comme <a class="text-dark font-italic" href="{{ path('app_info_vaccineInformation')}}#iframeEligibily" target="_blank" rel="noopener noreferrer"> public prioritaire</a> vous serez surement amené à patienter quelques mois, sur la liste d'attentes.</p>
     
     <h2 class="mt-5 h4 font-weight-bold">Une utilisation simple</h2>
     <ul class="large h5">
         <li>Vous vous inscrivez</li>
-        <li>Une fois que vous êtes <a class="text-dark" href="{{ path('app_info_vaccineInformation')}}#iframeEligibily" target="_blank" rel="noopener noreferrer">admisible à la vaccination</a>, le centre de vaccination vous contacte directement</li>
+        <li>Une fois que vous êtes <a class="text-dark font-italic" href="{{ path('app_info_vaccineInformation')}}#iframeEligibily" target="_blank" rel="noopener noreferrer">admisible à la vaccination</a>, le centre de vaccination vous contacte directement</li>
         <li>Vous confirmez le rendez-vous</li>
         <li>Si vôtre vaccin nécessite deux doses le centre vous recontactera pour l'effectuer</li>
         <li class="font-weight-bold">Ça y est vous êtes vacciné</li>

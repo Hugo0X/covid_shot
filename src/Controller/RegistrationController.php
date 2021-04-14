@@ -38,11 +38,13 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_info_home');
         }
         elseif ($request->get('nextStep') == 'map') {
-            $this->session->set('nextStep', 'app_user_map');
+            $this->session->set('nextStep', 'app_info_map');
         }
 
         $user = new User;
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'registration' => true,
+        ]);
         $form->handleRequest($request);
 
         $api = new ApiGeoController;
@@ -81,7 +83,7 @@ class RegistrationController extends AbstractController
                 $request,
                 $authenticator,
                 'main', // firewall name in security.yaml
-                $this->redirectToRoute('app_user_map')
+                $this->redirectToRoute('app_info_map')
             );
         }
         elseif ($user->getPostCode() && !$api->isPostCodeExist($user->getPostCode()))

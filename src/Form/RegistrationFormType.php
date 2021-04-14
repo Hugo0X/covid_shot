@@ -19,34 +19,43 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegistrationFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
+        if($options['registration']) {
+            $builder
+                ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé'])
+                ->add('password', PasswordType::class, [
+                    // instead of being set onto the object directly,
+                    // this is read and encoded in the controller
+                    'mapped' => false,
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez entrer un mot de passe',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Votre mot de passe doit être de {{ limit }} characters au minimum',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                ])
+            ;
+        }
+        else {
+            $builder
+                ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé si vous changez de mail'])
+            ;
+        }
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé'])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'J\'accepte la politique de confidentialité et les conditions d\'utilisation',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('password', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'message' => 'Vous devais accepter nos conditions d\'utilisation pour bénéficier de ce service.',
                     ]),
                 ],
             ])
@@ -87,6 +96,9 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'registration' => false,
         ]);
+
+        $resolver->setAllowedTypes('registration', 'bool');
     }
 }

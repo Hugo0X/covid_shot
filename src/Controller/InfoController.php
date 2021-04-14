@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Controller\ApiVaccineController;
+use App\Controller\ApiGeoController;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart;
 
 class InfoController extends AbstractController
@@ -37,6 +38,23 @@ class InfoController extends AbstractController
     {
         return $this->render('info/registrationInformation.html.twig', [  
         ]);
+    }
+
+    /**
+     * @Route("/map", name="app_info_map")
+     */
+    public function map(): Response
+    {
+        $this->session->remove('nextStep');
+        
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_info_home');
+        }
+
+        $api = new ApiGeoController;
+        $gps = $api->getGps($this->getUser()->getPostCode());
+
+        return $this->render('info/map.html.twig', [ 'gps' => $gps ]);
     }
 
     /**

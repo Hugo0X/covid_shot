@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_info_home');
         }
         elseif ($request->get('nextStep') == 'map') {
-            $this->session->set('nextStep', 'app_user_map');
+            $this->session->set('nextStep', 'app_info_map');
         }
 
         // get the login error if there is one
