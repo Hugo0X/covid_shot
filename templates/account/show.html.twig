@@ -2,21 +2,25 @@
 
 {% block title "Mon compte | TPLV"  %}
 {% block body %}
-        <div class="mx-auto text-center">
+<div class="page-container">
+        <div class="mx-auto text-center content-wrap">
                 <h1 class="mt-5 mb-3">Bonjour <span class="line"></span>{{ app.user.lastName | upper }} {{ app.user.firstName }},</h1>           
 
                 <p class="mb-5 text-muted">Ici vous pouvez effectuer toutes les actions importantes pour votre compte</p>
                 <div class="btn-group d-flex" role="group">
-                        <a  class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_edit' , {token: csrf_token('account_edit')})}}">Modifier votre compte</a> 
-                        <a class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_changePassword', {token: csrf_token('account_changePassword')} )}}">Changer votre mot de passe</a>
+                        <a  class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_edit' , {token: csrf_token('account_edit')})}}">Modifier mon compte</a> 
+                        <a class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_changePassword', {token: csrf_token('account_changePassword')} )}}">Changer mon mot de passe</a>
                 </div>
 
-        </div>  
-        <a class="h4 btnFooter text-decoration-none btn btn-outline-danger btn-lg" href="#" onclick="event.preventDefault(); confirm('Êtes vous sur de vouloir supprimer votre compte ?') && document.getElementById('js-deleteUser-form').submit();">Suprimer son compte</a>
-        
-        <form method="post" id="js-deleteUser-form" action="{{ path('app_account_delete')}}" onsubmit="return confirm('Do you really want delete this user?');">
+        </div>
+
+        <div class="center btnFooter">
+                <a class="h4 btnFooter text-decoration-none btn btn-outline-danger btn-lg" href="#" onclick="event.preventDefault(); confirm('Êtes vous sur de vouloir supprimer votre compte ?') && document.getElementById('js-deleteUser-form').submit();">Supprimer son compte</a>
+        </div>
+
+        <form method="post" id="js-deleteUser-form" action="{{ path('app_account_delete')}}">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete') }}">
         </form>
-
+</div>        
 {% endblock %}

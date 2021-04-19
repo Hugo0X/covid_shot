@@ -25,7 +25,7 @@
 
    	<h2 class="mt-4 h4 font-weight-bold">Les vaccins utilisés en France</h2>
     <p>La seule façon de mettre un terme à cette pandémie est la vaccination, le gouvernement prévois que tous les Français qui le souhaitent soit vaccinés d'ici début septembre, en attendant continuons d'appliquer les gestes barrières et de porter le masque.</p>
-	<p> Du moins à ce jour, {{ vaccineName|length}} vaccins sont utilisés en France : </p>
+	<p>À ce jour, {{ vaccineName|length}} vaccins sont utilisés en France : </p>
     <ul>
 		{% for name in vaccineName %}
         	<li>{{ name }}</li>

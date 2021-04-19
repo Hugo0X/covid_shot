@@ -25,6 +25,7 @@ class RegistrationFormType extends AbstractType
             $builder
                 ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé'])
                 ->add('password', PasswordType::class, [
+                    'attr' => ['minlength' => 6],
                     // instead of being set onto the object directly,
                     // this is read and encoded in the controller
                     'mapped' => false,
@@ -40,25 +41,34 @@ class RegistrationFormType extends AbstractType
                         ]),
                     ],
                 ])
+                ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => 'J\'accepte la politique de confidentialité et les conditions d\'utilisation',
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'Vous devais accepter nos conditions d\'utilisation pour bénéficier de ce service.',
+                        ]),
+                    ],
+                ])
             ;
         }
         else {
             $builder
                 ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé si vous changez de mail'])
+                ->add('agreeTerms', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => 'Je certifie sur l\'honneur que les informations communiquées ci-dessus sont exactes.',
+                    'constraints' => [
+                        new IsTrue([
+                            'message' => 'Vous devais accepter nos conditions d\'utilisation pour bénéficier de ce service.',
+                        ]),
+                    ],
+                ])
             ;
         }
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'label' => 'J\'accepte la politique de confidentialité et les conditions d\'utilisation',
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devais accepter nos conditions d\'utilisation pour bénéficier de ce service.',
-                    ]),
-                ],
-            ])
             ->add('postCode')
             ->add('phone', TelType::class, ['attr' => ['minlength' => 10, 'maxlength' => 10]])
             ->add('address')

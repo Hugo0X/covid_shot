@@ -62,7 +62,7 @@ class AccountController extends AbstractController
 
 
         return $this->render('account/edit.html.twig', [
-            'userForm' => $userForm->createView()
+            'registrationForm' => $userForm->createView()
         ]);
     }
 

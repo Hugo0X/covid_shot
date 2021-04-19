@@ -37,9 +37,6 @@ class RegistrationController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('app_info_home');
         }
-        elseif ($request->get('nextStep') == 'map') {
-            $this->session->set('nextStep', 'app_info_map');
-        }
 
         $user = new User;
         $form = $this->createForm(RegistrationFormType::class, $user, [
@@ -51,6 +48,9 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid() && $api->isPostCodeExist($user->getPostCode())) {
             // encode the plain password
+            if ($request->get('nextStep') == 'map') {
+                $this->session->set('nextStep', 'app_info_map');
+            }
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

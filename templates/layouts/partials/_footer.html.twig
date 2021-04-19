@@ -1,0 +1,31 @@
+<footer>
+  <div class="container d-flex justify-content-between h5">
+    <p class="font-weight-bold"> &copy; {{ 'now'|date('Y') }} <a class="text-primary font-weight-bold" href="{{ path('app_info_home') }}">#TousPourLesVaccins</a></p>
+    <a id="backToTop" class="text-dark cursorPointer"  onclick="topFunction()">
+      <span class="showAll">Vers le haut <span class="h4">▲</span></span>
+      <span class="showShort h3 font-weight-bold">▲</span>
+    </a>
+    {# <a onclick="topFunction()" id="myBtn" title="Go to top">Top</a> #}
+  </div>
+  </div>
+</footer>
+
+<script>
+
+var backToTop = document.getElementById("backToTop");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+}
+
+function topFunction() {  // to avoid the addition in the url 
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>

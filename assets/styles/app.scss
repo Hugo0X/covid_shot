@@ -23,14 +23,30 @@ $theme-colors: (
 
 @import "bootstrap";
 
+html, body {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+
 body {
     background-color: white;
     font-family: 'marianne', 'Roboto-Bold', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top:auto;
+    padding-top: 3%;
+    border-top: 3px solid #000091;
+    background-color: #ececec;
 }
 
 .themeTitle {
     color: $primary;
-    font-weight: bold;
+    font-weight: 800;
+    font-family: 'Roboto-Bold', Arial;
     font-size: min(calc(70% + 1.75vw), 300%);
 }
 
@@ -105,16 +121,13 @@ body {
     }
 }
 
+#backToTop {
+    display: none;
+}
+
 .form-control::placeholder { /* available on Chrome, Firefox, Opera, Safari 10.1+ */
     color: #959595;
     opacity: 1; /* Firefox */
-}
-
-.btnFooter {
-    position: absolute;
-    bottom: 5%;
-    left: 25%;
-    right: 25%;
 }
 
 .labelDisplayNone
@@ -125,9 +138,9 @@ body {
     }
 }
 
-.radioCursor
+.cursorPointer
 {
-    cursor: default;
+    cursor: pointer;
 }
 
 
@@ -153,6 +166,23 @@ body {
     } 
 }
 
+// account->show button 
+
+.page-container {
+    position: relative;
+    min-height: 60vh;
+    }
+    
+.content-wrap {
+    padding-bottom: 5rem;
+}
+
+.btnFooter {
+    width:100%;
+    position: absolute;
+    bottom: 0;
+}
+    
 // --- counter ---
 
 .counter {
@@ -185,6 +215,11 @@ body {
 }
 
 // --- media querries ---
+@media screen and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+}
 
 @media (max-width: 1024px)
 {
@@ -214,22 +249,25 @@ body {
             }
 
             .btnFooter {
-                right: 2.5%;
+                // right: 2.5%;
+                // left: 2.5%;
             }
+
         }
     }
 }
-
-// .backgroundAnimation:hover {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 50%;
-//     height: 100%;
-//     background-color: $primary;
-// }
-
-
+@media (max-width: 500px)
+{
+    .showAll {
+        display: none;
+    }
+}
+@media all and (min-width: 500px)
+{
+    .showShort {
+        display: none;
+    }
+}
 
 // animation \\
 
