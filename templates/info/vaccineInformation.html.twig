@@ -48,9 +48,28 @@
     </script>
 
 	<script>
-		setTimeout(function() {
+		if(screen.width < 400) {
+			setTimeout(function() {
+			$break = 0;	
 			var texts = document.querySelector('#div_chart').querySelectorAll('text');
-			console.log(texts);
+			for (var i=0; i<texts.length; i+=1) {
+				var text = texts[i];
+				if ($break != 1 && text.textContent.match("Doses de")) {
+					text.setAttribute("style", "display:none");
+					$break = 1;
+				}
+				else if(text.textContent.match("administrés")){
+					text.setAttribute("text-anchor", "middle");
+					text.setAttribute("x", "50%");
+					text.textContent = "Vaccins / Jour";
+					break;
+				}
+			};
+		}, 3250); 
+		}
+		else{
+			setTimeout(function() {
+			var texts = document.querySelector('#div_chart').querySelectorAll('text');
 			for (var i=0; i<texts.length; i+=1) {
 				var text = texts[i];
 				if (text.textContent.trim() == "Doses de vaccins administrés par jour") {
@@ -59,7 +78,9 @@
 					break;
 				}
 			};
-		}, 3000);
+		}, 3250); 
+		}
+		
 	</script>
 {# chart -- #}
 
