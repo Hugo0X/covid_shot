@@ -50,13 +50,13 @@
 	<script>
 		if(screen.width < 400) {
 			setTimeout(function() {
-			$break = 0;	
+			let resolveFirst = false;
 			var texts = document.querySelector('#div_chart').querySelectorAll('text');
 			for (var i=0; i<texts.length; i+=1) {
 				var text = texts[i];
-				if ($break != 1 && text.textContent.match("Doses de")) {
+				if (!resolveFirst  && text.textContent.match("Doses de")) {
 					text.setAttribute("style", "display:none");
-					$break = 1;
+					resolveFirst = true;
 				}
 				else if(text.textContent.match("administrés")){
 					text.setAttribute("text-anchor", "middle");

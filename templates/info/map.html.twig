@@ -157,8 +157,6 @@ crossorigin=""></script>
 
     var longitude = "{{ gps[0] }}";
     var lattitude = "{{ gps[1] }}";
-
-    console.log(lattitude);
        
     var mymap = L.map('mapid').setView([lattitude, longitude], 11); //([lattitude, longitude] zoom);
     var markers = L.markerClusterGroup({ disableClusteringAtZoom: 9 });
@@ -196,10 +194,4 @@ crossorigin=""></script>
     
 </script>
 
-<style>
-    #mapid { height: 180px; }
-</style>
-
-    
-   
 {% endblock %}
