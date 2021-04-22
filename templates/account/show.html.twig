@@ -9,7 +9,7 @@
                 <p class="mb-5 text-muted">Ici vous pouvez effectuer toutes les actions importantes pour votre compte</p>
                 <div class="btn-group d-flex" role="group">
                         <a  class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_edit' , {token: csrf_token('account_edit')})}}">Modifier mon compte</a> 
-                        <a class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_changePassword', {token: csrf_token('account_changePassword')} )}}">Changer mon mot de passe</a>
+                        <a class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_NewPassword', {token: csrf_token('account_NewPassword')} )}}">Changer mon mot de passe</a>
                 </div>
 
         </div>

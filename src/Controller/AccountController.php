@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\RegistrationFormType;
-use App\Form\ChangePasswordFormType;
+use App\Form\NewPasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
@@ -67,14 +67,14 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/change-password", name="app_account_changePassword", methods={"GET", "PATCH"})
+     * @Route("/change-password", name="app_account_NewPassword", methods={"GET", "PATCH"})
      */
-    public function changePassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder) : Response
+    public function NewPassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
-        if($this->isCsrfTokenValid('account_changePassword', $request->query->get('token'))) {
+        if($this->isCsrfTokenValid('account_NewPassword', $request->query->get('token'))) {
             $user = $this->getUser();
 
-            $form = $this->createForm(ChangePasswordFormType::class, null, [
+            $form = $this->createForm(NewPasswordFormType::class, null, [
                 'current_password_is_required' => true,
                 'method' => 'PATCH'
             ]);
@@ -97,7 +97,7 @@ class AccountController extends AbstractController
         else
             return $this->redirectToRoute('app_info_home');
 
-        return $this->render('account/changePassword.html.twig', [
+        return $this->render('account/newPassword.html.twig', [
             'form' => $form->createView()
         ]);
     }

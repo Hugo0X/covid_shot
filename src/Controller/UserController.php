@@ -21,13 +21,13 @@ class UserController extends AbstractController
     //     $this->session = $session;
     // }
 
-    /**
-     * @Route("/", name="app_user")
-     */
-    public function index(): Response
-    {  
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
+    // /**
+    //  * @Route("/", name="app_user")
+    //  */
+    // public function index(): Response
+    // {  
+    //     return $this->render('user/index.html.twig', [
+    //         'controller_name' => 'UserController',
+    //     ]);
+    // }
 }

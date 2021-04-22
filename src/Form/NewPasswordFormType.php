@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
 
-class ChangePasswordFormType extends AbstractType
+class NewPasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
