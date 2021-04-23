@@ -606,6 +606,12 @@
     "symfonycasts/verify-email-bundle": {
         "version": "v1.3.0"
     },
+    "twig/extra-bundle": {
+        "version": "v3.3.0"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.0"
+    },
     "twig/twig": {
         "version": "v3.3.0"
     },

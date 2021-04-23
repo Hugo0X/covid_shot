@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Email envoyé ! | TPLV{% endblock %}
+
+{% block body %}
+
+<h1 class="my-5 h2 text-center text-primary">L'email de réinitialisation de votre mot de passe a été envoyé</h1>
+    <p>
+        Un e-mail a été envoyé contenant un lien sur lequel vous pouvez <span class="font-weight-bold">cliquer pour réinitialiser votre mot de passe</span>.
+        Ce lien expirera dans <span class="font-weight-bold">{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</span>.
+    </p>
+    <p>Si n'avez pas reçu d'e-mail, veuillez vérifier votre dossier spam ou <a class="text-primary font-weight-bold" href="{{ path('app_forgot_password_request') }}">réessayer</a> 
+        dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}. Vous aurez sûrement trouvé ou reçu le mail d'ici là.</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Nouveau mot de passe | TPLV{% endblock %}
+
+{% block body %}
+    <h1 class="my-5 h2 text-center text-primary">Choisir un nouveau mot de passe</h1>
+
+
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button type="submit" class="my-5 btn-lg btn btn-outline-primary btn-block">Valider</button>
+    {{ form_end(resetForm) }}
+{% endblock %}

@@ -58,12 +58,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // if(!$api->isPostCodeExist($user->getPostCode()))
-            // {
-            //     $this->addFlash('error', 'Le code postal renseigné n\'existe pas');
-            //     return $this->redirectToRoute('app_register');
-            // }
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -73,7 +67,7 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address($this->getParameter('app.mail_from_address'), $this->getParameter('app.mail_from_name')))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('TPLV - Veuillez confirmez votre email - TousPourLesVaccins')
                     ->htmlTemplate('mails/confirmation.html.twig')
             );
             // do anything else you need here, like send an email

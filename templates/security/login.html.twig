@@ -20,11 +20,17 @@
         {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html #}
 
-        <div class="checkbox mt-3 mb-4">
-            <label>
-                <input type="checkbox" name="_remember_me"> Se souvenir de moi
-            </label>
+        <div class="mt-3 mb-4 d-flex justify-content-between ">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                </label>
+            </div>
+            <div>
+                <a href="{{ path('app_forgot_password_request') }}" class="text-primary">Mot de passe oublié ?</a>
+            </div>
         </div>
+        
    
 
     <div class="text-center"><button class="mt-4 mb-5 col-md-6 btn btn-lg btn-outline-primary themeBackgroundColor" type="submit">Valider</button></div>

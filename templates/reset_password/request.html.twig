@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Réinitialisation du mot de passe | TPLV' %}
+
+{% block body %}
+
+<h1 class="my-5 h2 text-center text-primary">Réinitialiser son mot de passe</h1>
+
+    {{ form_start(requestForm) }}
+    <div class="mb-4 h5 text-center">
+        Entrez votre adresse email pour recevoir un lien permettant de réinitialiser votre mot de passe.
+    </div>
+        {{ form_row(requestForm.email, {'label': 'Email', 'attr': {'placeholder': 'emmanuel.macron@exemple.fr'}}) }} 
+
+        <button type="submit" class="my-5 btn-lg btn btn-outline-primary btn-block">Recevoir le mail</button>
+    {{ form_end(requestForm) }}
+<!-- Vous allez recevoir un e-mail contenant un lien de réinitialisation de votre mot de passe. -->
+
+{% endblock %}
