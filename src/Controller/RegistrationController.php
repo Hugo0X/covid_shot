@@ -131,7 +131,7 @@ class RegistrationController extends AbstractController
                             elseif (substr($securiteSociale, 5, 2) == '2B' ) { // Haute-Corse to int
                                 $securiteSociale = str_replace('2B', 18, $securiteSociale);
                             }
-                            if(fmod( substr($securiteSociale, 13, 2), substr($securiteSociale, 0, 13)) == substr($securiteSociale, 13, 2)){ // security key
+                            if(97 - fmod(substr($securiteSociale, 0, 13), 97) == substr($securiteSociale, 13, 2)){ // security key
                                 return true;
                             }
                     }
