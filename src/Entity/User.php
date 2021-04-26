@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="UserEntity.unique_entity")
+ * @UniqueEntity(fields={"securiteSociale"}, message="UserEntity.unique_entity")
  */
 class User implements UserInterface
 {
@@ -131,38 +132,18 @@ class User implements UserInterface
     private $city;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="UserEntity.not_blank")
-     * @Assert\Type("integer")
-     * @Assert\Length(
-     *      min = 1,
-     *      max = 3,
-     *      minMessage = "UserEntity.minLenght",
-     *      maxMessage = "UserEntity.maxLenght",
-     *      allowEmptyString = false
-     * )
-     * @Assert\Range(
-     *      min = 18,
-     *      max = 120,
-     *      notInRangeMessage = "UserEntity.range" 
-     * )
-     */
-    private $age;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=15, unique=true)
      * @Assert\NotBlank(message="UserEntity.not_blank")
      * @Assert\Type("string")
      * @Assert\Length(
-     *      min = 7,
-     *      max = 8,
+     *      min = 15,
+     *      max = 15,
      *      minMessage = "UserEntity.minLenght",
      *      maxMessage = "UserEntity.maxLenght",
      *      allowEmptyString = false
      * )
      */
-    private $genre;  // nom à modifier
+    private $securiteSociale;
 
     /**
      * @ORM\Column(type="boolean")
@@ -332,14 +313,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getsecuriteSociale(): ?string
     {
-        return $this->age;
+        return $this->securiteSociale;
     }
 
-    public function setAge(int $age): self
+    public function setsecuriteSociale(string $securiteSociale): self
     {
-        $this->age = $age;
+        $this->securiteSociale = $securiteSociale;
 
         return $this;
     }

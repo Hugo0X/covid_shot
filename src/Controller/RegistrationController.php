@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
 
         $api = new ApiGeoController;
 
-        if ($form->isSubmitted() && $form->isValid() && $api->isPostCodeExist($user->getPostCode())) {
+        if ($form->isSubmitted() && $form->isValid() && $api->isPostCodeExist($user->getPostCode()) && $this->verifyUserSecurtiteSociale($user->getSecuriteSociale())) {
             // encode the plain password
             if ($request->get('nextStep') == 'map') {
                 $this->session->set('nextStep', 'app_info_map');
@@ -84,6 +84,10 @@ class RegistrationController extends AbstractController
         {
             $this->addFlash('error', 'Le code postal renseigné n\'existe pas');
         }
+        elseif ($user->getSecuriteSociale() && !$this->verifyUserSecurtiteSociale($user->getSecuriteSociale()))
+        {
+            $this->addFlash('error', 'Le format du numéro de sécurtié sociale est invalide');
+        }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
@@ -109,5 +113,21 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Votre adresse email a bien été vérifiée.');
 
         return $this->redirectToRoute('app_info_home');
+    }
+
+    private function verifyUserSecurtiteSociale($securiteSociale)
+    {
+        if(substr($securiteSociale, 0, 1) == ( 1 || 2 )){ //gender
+            if((substr($securiteSociale, 3, 2) >=  1 && substr($securiteSociale, 3, 2) <= 12) || (substr($securiteSociale, 4, 2) == (20 || 30 || 50))){ //month
+                $api = new ApiGeoController;
+                if(($api->isInseeCodeExist(substr($securiteSociale, 5, 5))) || (substr($securiteSociale, 6, 2) >= 91 && substr($securiteSociale, 6, 2) <= 96)) // inseeCode and foreigner
+                {
+                    if(fmod( substr($securiteSociale, 13, 2), substr($securiteSociale, 0, 13)) == substr($securiteSociale, 13, 2)){ // security key
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

@@ -207,3 +207,5 @@ class ResetPasswordController extends AbstractController
         return $this->redirectToRoute('app_check_email');
     }
 }
+// DELETE FROM reset_password_request
+// WHERE CURRENT_TIMESTAMP > expires_at

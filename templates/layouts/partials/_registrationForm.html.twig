@@ -7,29 +7,8 @@
         <div class="col-md-6">
             {{ form_row(registrationForm.firstName, {'label': 'Prénom', 'attr': {'placeholder': 'Jean'}}) }}
         </div>
-        <div class="col-md-6">
-            {{ form_row(registrationForm.age) }}
-        </div>
-        <div class="col-md-6">                                	
-            {{ form_label(registrationForm.genre, 'Genre') }}       
-                <div class="d-flex flex-row">        
-                    <div class="input-group cursorPointer animation" onclick="checkRadio0('registration_form_genre_0');">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text labelDisplayNone pl-3 pb-3">
-                                {{ form_widget(registrationForm.genre[0]) }}
-                            </div>
-                        </div>
-                            <p class="form-control">Homme<p>
-                    </div>
-                    <div class="input-group cursorPointer animation" onclick="checkRadio1('registration_form_genre_1');">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text labelDisplayNone pl-3 pb-3">
-                                {{ form_widget(registrationForm.genre[1]) }}
-                            </div>
-                        </div>
-                            <p class="form-control">Femme<p>
-                    </div>                     
-                </div>
+        <div class="col-md-12">
+            {{ form_row(registrationForm.securiteSociale, {'label': 'Numéro de sécurtié sociale', 'attr': {'placeholder': '268106747104878'}}) }}
         </div>
     </div>
 </div>

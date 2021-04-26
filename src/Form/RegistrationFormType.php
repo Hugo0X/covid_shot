@@ -73,15 +73,7 @@ class RegistrationFormType extends AbstractType
             ->add('phone', TelType::class, ['attr' => ['minlength' => 10, 'maxlength' => 10]])
             ->add('address')
             ->add('city')
-            ->add('age')
-            ->add('genre',ChoiceType::class,[
-                'choices' => [
-                    'Masculin' => 'Masculin',
-                    'Féminin' => 'Féminin',],
-                'expanded'=> true,
-                'multiple'=> false,
-                'choice_label' => false,
-            ])
+            ->add('securiteSociale')
             ->add('isMedicalStaff',ChoiceType::class,[
                 'choices' => [
                     'Oui' => true,

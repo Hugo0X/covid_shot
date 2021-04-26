@@ -38,6 +38,27 @@ class ApiGeoController extends AbstractController
         }
     }
 
+    public function isInseeCodeExist($inseeCode)
+    {
+        $url = $this->apiLink . $inseeCode .'&type=municipality&limit=1';
+
+        if($this->get_http_response_code($url) != "200"){
+            dd('code 404');
+            return false;
+        }
+
+        $response = file_get_contents($url);
+        $response = json_decode($response);
+
+        if ($response->features) {
+            return true;
+        }
+        else {
+            // dd('empty');
+            return false;
+        }
+    }
+
     private function get_http_response_code($url) {
         $headers = get_headers($url);
         return substr($headers[0], 9, 3);
