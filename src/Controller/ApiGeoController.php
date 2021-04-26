@@ -43,7 +43,6 @@ class ApiGeoController extends AbstractController
         $url = $this->apiLink . $inseeCode .'&type=municipality&limit=1';
 
         if($this->get_http_response_code($url) != "200"){
-            dd('code 404');
             return false;
         }
 
@@ -54,7 +53,6 @@ class ApiGeoController extends AbstractController
             return true;
         }
         else {
-            // dd('empty');
             return false;
         }
     }

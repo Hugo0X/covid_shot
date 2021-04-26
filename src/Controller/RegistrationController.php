@@ -117,15 +117,24 @@ class RegistrationController extends AbstractController
 
     private function verifyUserSecurtiteSociale($securiteSociale)
     {
-        if(substr($securiteSociale, 0, 1) == ( 1 || 2 )){ //gender
-            if((substr($securiteSociale, 3, 2) >=  1 && substr($securiteSociale, 3, 2) <= 12) || (substr($securiteSociale, 4, 2) == (20 || 30 || 50))){ //month
-                $api = new ApiGeoController;
-                if(($api->isInseeCodeExist(substr($securiteSociale, 5, 5))) || (substr($securiteSociale, 6, 2) >= 91 && substr($securiteSociale, 6, 2) <= 96)) // inseeCode and foreigner
-                {
-                    if(fmod( substr($securiteSociale, 13, 2), substr($securiteSociale, 0, 13)) == substr($securiteSociale, 13, 2)){ // security key
-                        return true;
+        if(substr($securiteSociale, 0, 1) == ( 1 || 2 )) { // gender
+            if((substr($securiteSociale, 3, 2) >=  1 && substr($securiteSociale, 3, 2) <= 12) || // month
+                (substr($securiteSociale, 3, 2) >= 20  && substr($securiteSociale, 3, 2) <= 30) || // incomplete civil deed range
+                substr($securiteSociale, 3, 2) == 50) { // incomplete civil deed
+                    $api = new ApiGeoController;
+                    if(($api->isInseeCodeExist(substr($securiteSociale, 5, 5))) || // inseeCode
+                        (substr($securiteSociale, 5, 2) >= 91 && substr($securiteSociale, 5, 2) <= 96) || // old colony or protectorate
+                        (substr($securiteSociale, 5, 2) == 99)) { // foreigner
+                            if(substr($securiteSociale, 5, 2) == '2A') { // Corse-du-Sud to int
+                                $securiteSociale = str_replace('2A', 19, $securiteSociale);
+                            }
+                            elseif (substr($securiteSociale, 5, 2) == '2B' ) { // Haute-Corse to int
+                                $securiteSociale = str_replace('2B', 18, $securiteSociale);
+                            }
+                            if(fmod( substr($securiteSociale, 13, 2), substr($securiteSociale, 0, 13)) == substr($securiteSociale, 13, 2)){ // security key
+                                return true;
+                            }
                     }
-                }
             }
         }
         return false;
