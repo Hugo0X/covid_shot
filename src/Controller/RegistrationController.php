@@ -87,6 +87,7 @@ class RegistrationController extends AbstractController
         elseif ($user->getSecuriteSociale() && !$this->verifyUserSecurtiteSociale($user->getSecuriteSociale()))
         {
             $this->addFlash('error', 'Le format du numéro de sécurtié sociale est invalide');
+            // $form->setErrors('securiteSociale');
         }
 
         return $this->render('registration/register.html.twig', [

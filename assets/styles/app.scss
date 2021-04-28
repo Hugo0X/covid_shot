@@ -170,6 +170,25 @@ footer {
     } 
 }
 
+// --- modal ---
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #ffffff;
+  }
+  .icon-box i {
+    color: #ffffff;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+  }
+
+
 // account->show button 
 
 .page-container {
