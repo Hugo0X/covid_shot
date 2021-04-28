@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Controller\ApiGeoController;
 
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -45,7 +46,8 @@ class AccountController extends AbstractController
     public function edit(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder) : Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        if($this->isCsrfTokenValid('account_edit', $request->query->get('token'))) {
+        if($this->isCsrfTokenValid('account_edit', $request->query->get('token')))
+        {
             $user = $this->getUser();
             $orginalMail = $user->getEmail();
 
@@ -54,8 +56,10 @@ class AccountController extends AbstractController
             ]);
 
             $userForm->handleRequest($request);
+            
+            $api = new ApiGeoController;
 
-            if($userForm->isSubmitted() && $userForm->isValid())
+            if($userForm->isSubmitted() && $userForm->isValid() && $api->isPostCodeExist($user->getPostCode()) && $this->verifyUserSecurtiteSociale($user->getSecuriteSociale()))
             {
                 if($userForm['email']->getData() != $orginalMail)
                 {
@@ -68,7 +72,11 @@ class AccountController extends AbstractController
 
                 return $this->redirectToRoute('app_account_index');
             }
-        }
+            elseif ($user->getPostCode() && !$api->isPostCodeExist($user->getPostCode()))
+                $this->addFlash('error', 'Le code postal renseigné n\'existe pas');
+            elseif ($user->getSecuriteSociale() && !$this->verifyUserSecurtiteSociale($user->getSecuriteSociale()))
+                $this->addFlash('error', 'Le format du numéro de sécurtié sociale est invalide');
+        }    
         else
             return $this->redirectToRoute('app_info_home');
 
@@ -129,7 +137,7 @@ class AccountController extends AbstractController
             (new TemplatedEmail())
                 ->from(new Address($this->getParameter('app.mail_from_address'), $this->getParameter('app.mail_from_name')))
                 ->to($this->getUser()->getEmail())
-                ->subject('Please Confirm your Email')
+                ->subject('TPLV - Veuillez confirmez votre email - TousPourLesVaccins')
                 ->htmlTemplate('mails/confirmation.html.twig')
             );
 
@@ -160,5 +168,30 @@ class AccountController extends AbstractController
         }
         
         return $this->redirectToRoute('app_info_home');
+    }
+
+    public function verifyUserSecurtiteSociale($securiteSociale)
+    {
+        if(substr($securiteSociale, 0, 1) == ( 1 || 2 )) { // gender
+            if((substr($securiteSociale, 3, 2) >=  1 && substr($securiteSociale, 3, 2) <= 12) || // month
+                (substr($securiteSociale, 3, 2) >= 20  && substr($securiteSociale, 3, 2) <= 30) || // incomplete civil deed range
+                substr($securiteSociale, 3, 2) == 50) { // incomplete civil deed
+                    $api = new ApiGeoController;
+                    if(($api->isInseeCodeExist(substr($securiteSociale, 5, 5))) || // inseeCode
+                        (substr($securiteSociale, 5, 2) >= 91 && substr($securiteSociale, 5, 2) <= 96) || // old colony or protectorate
+                        (substr($securiteSociale, 5, 2) == 99)) { // foreigner
+                            if(substr($securiteSociale, 5, 2) == '2A') { // Corse-du-Sud to int
+                                $securiteSociale = str_replace('2A', 19, $securiteSociale);
+                            }
+                            elseif (substr($securiteSociale, 5, 2) == '2B' ) { // Haute-Corse to int
+                                $securiteSociale = str_replace('2B', 18, $securiteSociale);
+                            }
+                            if(97 - fmod(substr($securiteSociale, 0, 13), 97) == substr($securiteSociale, 13, 2)){ // security key
+                                return true;
+                            }
+                    }
+            }
+        }
+        return false;
     }
 }
