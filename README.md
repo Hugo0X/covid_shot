@@ -9,6 +9,5 @@
 2. install the database
 3. uncomment *.env* 
 4. *cd covid_shot & composer install*
-5. *composer install*
-6. *npm install*
-7. *npm run build*
+5. *npm install*
+6. *npm run build*
