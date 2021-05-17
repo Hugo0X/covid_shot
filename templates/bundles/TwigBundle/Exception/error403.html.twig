@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Accès interdit | TPLV{% endblock %}
+
+{% block body %}
+<div class="text-center">
+    <h1 class="my-5 h2 text-primary">ERREUR 403</h1>
+    <h5>Vous ne pouvez pas acceder à cette page</h5>
+    <a href="{{ path('app_info_home') }}" class="h5 text-primary">Retour au menu</a>
+</div>
+
+{% endblock %}

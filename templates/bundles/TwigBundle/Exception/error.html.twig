@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Incident serveur | TPLV{% endblock %}
+
+{% block body %}
+
+<div class="text-center">
+    <h1 class="my-5 h2 text-primary">ERREUR 500</h1>
+    <h5>Nous sommes desolés pour cette erreur, veuillez réessayer.</h5>
+    <a href="{{ path('app_info_home') }}" class="h5 text-primary">Retour au menu</a>
+</div>
+    
+{% endblock %}
