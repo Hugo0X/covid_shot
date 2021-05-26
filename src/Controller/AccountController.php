@@ -43,7 +43,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/edit", name="app_account_edit", methods={"GET", "PATCH"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder) : Response
+    public function edit(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session) : Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if($this->isCsrfTokenValid('account_edit', $request->query->get('token')))
@@ -63,6 +63,7 @@ class AccountController extends AbstractController
             {
                 if($userForm['email']->getData() != $orginalMail)
                 {
+                    $session->remove('emailSent');
                     $user->setIsVerified(false);
                 }
 
