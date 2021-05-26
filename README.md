@@ -1,6 +1,6 @@
 # covid_shot
 
-##### This project is a school assignment.
+##### This project is a homework assignment.
 
 ## Installation
 
