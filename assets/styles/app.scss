@@ -147,9 +147,16 @@ footer {
     cursor: pointer;
 }
 
+// --- dropdown rotation in nav 
+
 .mobileDropdownButtonRotation {
-    animation-duration: 2s;
+    transition-duration: 500ms;
     transform: rotate(90deg);
+}
+
+.mobileDropdownButtonRotation0 {
+    transition-duration: 500ms;
+    transform: rotate(0);
 }
 
 // --- banner alert ---

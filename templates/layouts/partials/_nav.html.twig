@@ -32,10 +32,12 @@
   function rotation(){
     var element = document.getElementById("mobileDropdownButton");
     if (element.classList.contains("mobileDropdownButtonRotation")) {
+      element.classList.add("mobileDropdownButtonRotation0");
       element.classList.remove("mobileDropdownButtonRotation");
     }
     else {
       element.classList.add("mobileDropdownButtonRotation");
+      element.classList.remove("mobileDropdownButtonRotation0");
     }
   }
 </script>
