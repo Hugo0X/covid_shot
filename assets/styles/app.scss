@@ -147,6 +147,12 @@ footer {
     cursor: pointer;
 }
 
+.mobileDropdownButtonRotation {
+    animation-duration: 2s;
+    transform: rotate(90deg);
+}
+
+// --- banner alert ---
 
 .alert
 {

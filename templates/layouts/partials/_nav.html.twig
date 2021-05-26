@@ -4,8 +4,8 @@
     <img class="navbar-brand bannerImg" src="https://www.legifrance.gouv.fr/contenu/logo-rf" alt="République Française">
      <p>#TousPourLesVaccins</p>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button onclick="rotation();" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span id="mobileDropdownButton" class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExample04">
@@ -28,4 +28,15 @@
     </ul>
   </div>
 </div>
+<script>
+  function rotation(){
+    var element = document.getElementById("mobileDropdownButton");
+    if (element.classList.contains("mobileDropdownButtonRotation")) {
+      element.classList.remove("mobileDropdownButtonRotation");
+    }
+    else {
+      element.classList.add("mobileDropdownButtonRotation");
+    }
+  }
+</script>
 </nav>
