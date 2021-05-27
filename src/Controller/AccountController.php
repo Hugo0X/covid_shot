@@ -28,7 +28,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/", name="app_account_index", methods="GET")
      */
-    public function show(SessionInterface $session)
+    public function Index(SessionInterface $session)
     {
         if (!$this->getUser()) 
             return $this->redirectToRoute('app_info_home');    
@@ -36,7 +36,7 @@ class AccountController extends AbstractController
             $this->addFlash('error', '<span class="h5">Votre compte n\'est pas verifié.<span> <a href=".\email" class="h5 text-light font-weight-bold">Recevoir un email pour le verifier</a>');
         
 
-        return $this->render('account/show.html.twig', [      
+        return $this->render('account/index.html.twig', [      
         ]);
     }
 

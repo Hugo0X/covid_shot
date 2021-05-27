@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav ml-auto text-right">
       {% if app.user %}
-      <li class="nav-item">
+      {% if app.request.attributes.get('_route') != 'app_account_index' %}<li class="nav-item">{% else %}<li class="nav-item active">{% endif %}
         <a class="nav-link" href="{{ path('app_account_index') }}">Mon compte</a>
       </li>
       <li class="nav-item">
