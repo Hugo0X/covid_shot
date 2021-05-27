@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
         }
         else {
             $builder
-                ->add('email', EmailType::class, ['help'=>'Un email va vous être envoyé si vous changez de email'])
+                ->add('email', EmailType::class, ['help'=>'Si vous modifiez votre email, vous devrez le valider'])
                 ->add('agreeTerms', CheckboxType::class, [
                     'mapped' => false,
                     'label' => 'Je certifie sur l\'honneur que les informations communiquées ci-dessus sont exactes.',
