@@ -58,6 +58,14 @@ class InfoController extends AbstractController
     }
 
     /**
+     * @Route("/privacy", name="app_info_privacy")
+     */
+    public function privacy(): Response
+    {
+        return $this->render('info/privacy.html.twig');
+    }
+
+    /**
      * @Route("/information/vaccins", name="app_info_vaccineInformation", methods={"GET"})
      */
     public function vaccineInformation(): Response

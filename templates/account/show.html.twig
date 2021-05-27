@@ -6,7 +6,9 @@
         <div class="mx-auto text-center content-wrap">
                 <h1 class="mt-5 mb-3">Bonjour <span class="line"></span>{{ app.user.lastName | upper }} {{ app.user.firstName }},</h1>           
 
-                <p class="text-muted">Ici vous pouvez effectuer toutes les actions importantes pour votre compte</p>
+                <p class="text-muted">Ici vous pouvez effectuer toutes les actions importantes pour votre compte,<br>
+                  et <a class="text-primary" href="{{ path('app_info_privacy') }}">consulter notre politique de confidentialité.</a>
+                </p>
 
                 <div class="btn-group d-flex" role="group">
                         <a  class="w-100 h4 text-decoration-none btn btn-outline-primary btn-lg" href="{{ path('app_account_edit' , {token: csrf_token('account_edit')})}}">Modifier mon compte</a> 
